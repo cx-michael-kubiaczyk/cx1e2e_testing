@@ -24,4 +24,4 @@ cat go.work
 
 # Sanity check: make sure both modules actually build together
 go work sync
-go build ./... -C "${E2E_DIR}"
+go -C "${E2E_DIR}" build ./...

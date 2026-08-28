@@ -37,9 +37,11 @@ jobs:
     env:
       CG_REPO: cxpsemea/cx1clientgo
       E2E_REPO: cxpsemea/cx1e2e
-      CANARY_TENANT_URL: ${{ secrets.CANARY_TENANT_URL }}
+      CANARY_CX1_URL: ${{ secrets.CANARY_CX1_URL }}
+      CANARY_IAM_URL: ${{ secrets.CANARY_IAM_URL }}
       CANARY_CLIENT_ID: ${{ secrets.CANARY_CLIENT_ID }}
       CANARY_CLIENT_SECRET: ${{ secrets.CANARY_CLIENT_SECRET }}
+      CANARY_TENANT: ${{ secrets.CANARY_TENANT }}
     steps:
       - name: Checkout orchestrator repo (scripts)
         uses: actions/checkout@v4
@@ -64,10 +66,10 @@ jobs:
           path: cx1e2e
 
       - name: Set up go.work linking both checkouts
-        run: ./scripts/setup-workspace.sh cx1clientgo cx1e2e
+        run: ../scripts/setup-workspace.sh cx1clientgo cx1e2e
 
       - name: Run full suite against Canary
-        run: ./scripts/run-full-suite.sh
+        run: ../scripts/run-full-suite.sh
         env:
           RUN_LABEL: nightly-staging
 

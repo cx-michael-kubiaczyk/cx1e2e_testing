@@ -65,6 +65,9 @@ jobs:
           ref: staging
           path: cx1e2e
 
+      - name: Check what's in the folder
+        run: ls -al
+
       - name: Set up go.work linking both checkouts
         run: ../scripts/setup-workspace.sh cx1clientgo cx1e2e
 

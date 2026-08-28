@@ -65,11 +65,14 @@ jobs:
           ref: staging
           path: cx1e2e
 
+      - name: Set permissions
+        run: chmod u+x ./.github/scripts/*.sh
+
       - name: Set up go.work linking both checkouts
-        run: ./.github//setup-workspace.sh cx1clientgo cx1e2e
+        run: ./.github/scripts/setup-workspace.sh cx1clientgo cx1e2e
 
       - name: Run full suite against Canary
-        run: ./.github//run-full-suite.sh
+        run: ./.github/scripts/run-full-suite.sh
         env:
           RUN_LABEL: nightly-staging
 

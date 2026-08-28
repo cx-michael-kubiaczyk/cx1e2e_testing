@@ -41,6 +41,9 @@ jobs:
           ref: main
           path: cx1e2e
 
+      - name: Set permissions
+        run: chmod u+x ./.github/scripts/*.sh
+
       - name: Set up go.work linking both checkouts
         run: ./.github/scripts/setup-workspace.sh cx1clientgo cx1e2e
 

@@ -41,14 +41,11 @@ jobs:
           ref: main
           path: cx1e2e
 
-      - name: Check what's in the folder
-        run: ls -alR
-
       - name: Set up go.work linking both checkouts
-        run: ../scripts/setup-workspace.sh cx1clientgo cx1e2e
+        run: ./.github/scripts/setup-workspace.sh cx1clientgo cx1e2e
 
       - name: Run full suite against Canary
-        run: ../scripts/run-full-suite.sh
+        run: ./.github/scripts/run-full-suite.sh
         env:
           RUN_LABEL: nightly-main
 
@@ -58,4 +55,4 @@ jobs:
         with:
           name: nightly-main-results
           path: results/
-          retention-days: 30
+          retention-days: 365

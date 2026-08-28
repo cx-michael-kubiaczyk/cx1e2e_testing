@@ -66,10 +66,10 @@ jobs:
           path: cx1e2e
 
       - name: Set up go.work linking both checkouts
-        run: ../scripts/setup-workspace.sh cx1clientgo cx1e2e
+        run: ./.github//setup-workspace.sh cx1clientgo cx1e2e
 
       - name: Run full suite against Canary
-        run: ../scripts/run-full-suite.sh
+        run: ./.github//run-full-suite.sh
         env:
           RUN_LABEL: nightly-staging
 

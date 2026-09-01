@@ -18,8 +18,8 @@ go run . \
   --cx1 "${CANARY_CX1_URL}" \
   --iam "${CANARY_IAM_URL}" \
   --tenant "${CANARY_TENANT}" \
-  --client-id "${CANARY_CLIENT_ID}" \
-  --client-secret "${CANARY_CLIENT_SECRET}" \
+  --client "${CANARY_CLIENT_ID}" \
+  --secret "${CANARY_CLIENT_SECRET}" \
   --config ./examples/all.yaml \
   --threads 4 \
   --report "../results/${RUN_LABEL:-manual}-report" \

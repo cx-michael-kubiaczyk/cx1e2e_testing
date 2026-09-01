@@ -10,7 +10,7 @@ set -euo pipefail
 
 mkdir -p results
 
-echo "Running cx1e2e full suite (${RUN_LABEL:-manual}) against ${CANARY_TENANT_URL}"
+echo "Running cx1e2e full suite (${RUN_LABEL:-manual}) against ${CANARY_CX1_URL} - ${CANARY_TENANT} using ${CANARY_CLIENT_ID}"
 
 cd cx1e2e
 

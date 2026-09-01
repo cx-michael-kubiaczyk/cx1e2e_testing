@@ -22,7 +22,7 @@ go run . \
   --secret "${CANARY_CLIENT_SECRET}" \
   --config ./examples/all.yaml \
   --threads 4 \
-  --report "../results/${RUN_LABEL:-manual}-report" \
+  --report-name "../results/${RUN_LABEL:-manual}-report" \
   --log trace \
   --logfile "../results/${RUN_LABEL:-manual}-log.txt" \
   | tee "../results/${RUN_LABEL:-manual}-log.txt"

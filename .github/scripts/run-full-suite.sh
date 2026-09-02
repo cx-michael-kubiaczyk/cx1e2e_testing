@@ -32,7 +32,7 @@ echo "Running cx1e2e full suite (${RUN_LABEL:-manual}) against ${CANARY_CX1_URL}
     --tenant "${CANARY_TENANT}" \
     --client "${CANARY_CLIENT_ID}" \
     --secret "${CANARY_CLIENT_SECRET}" \
-    --config ./examples/all.yaml \
+    --config ./examples/flag/all.yaml \
     --threads 4 \
     --report-name "../results/${RUN_LABEL:-manual}-report" \
     --log trace \

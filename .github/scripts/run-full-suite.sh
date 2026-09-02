@@ -81,7 +81,9 @@ fi
   fi
 } >> "$GITHUB_STEP_SUMMARY"
 
-# ---- ::error:: annotation carrying the same extract, for the checks/PR UI ----
+# ---- Build the extract once, reused by the ::error:: annotation and by
+#      notify-teams.sh so both show the exact same content ----
+EXTRACT=""
 if [ "$STATUS" != "passed" ]; then
   EXTRACT="$SUMMARY_LINES"
   if [ -n "$FAIL_LINES" ]; then
@@ -91,6 +93,16 @@ ${FAIL_LINES}"
   if [ -z "$EXTRACT" ]; then
     EXTRACT="cx1e2e suite did not produce a results summary (exit code $EXIT_CODE) - it likely crashed before running."
   fi
+fi
+echo "$EXTRACT" > "results/${RUN_LABEL:-manual}-extract.txt"
+
+# ---- Separate summary/fails files for notify-teams.sh, which renders them
+#      into two different parts of the adaptive card ----
+echo "$SUMMARY_LINES" > "results/${RUN_LABEL:-manual}-summary.txt"
+echo "$FAIL_LINES"    > "results/${RUN_LABEL:-manual}-fails.txt"
+
+# ---- ::error:: annotation carrying the same extract, for the checks/PR UI ----
+if [ "$STATUS" != "passed" ]; then
   # escape for the ::error:: workflow command (%, CR, LF)
   ESCAPED=$(printf '%s' "$EXTRACT" | sed -e 's/%/%25/g' -e 's/\r/%0D/g' | awk '{printf "%s%%0A", $0}')
   echo "::error::${ESCAPED}"

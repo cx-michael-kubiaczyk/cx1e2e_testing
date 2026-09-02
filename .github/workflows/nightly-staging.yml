@@ -105,6 +105,15 @@ jobs:
           echo "cx1e2e suite crashed / did not complete (exit code ${{ steps.run-suite.outputs.exit_code }})"
           exit 1
 
+      - name: Notify Microsoft Teams
+        if: always() && steps.run-suite.outputs.status != 'passed'
+        run: ./.github/scripts/notify-teams.sh
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          STATUS: ${{ steps.run-suite.outputs.status }}
+          EXIT_CODE: ${{ steps.run-suite.outputs.exit_code }}
+          RUN_LABEL: nightly-staging
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4

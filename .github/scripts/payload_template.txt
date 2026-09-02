@@ -1,0 +1,81 @@
+{
+    "type": "message",
+    "attachments": [{
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": {
+                "type": "AdaptiveCard",
+                "body": [{
+                        "type": "TextBlock",
+                        "text": "Cx1e2e - Main",
+                        "weight": "Bolder"
+                    }, {
+                        "type": "TextBlock",
+                        "text": "This would be the summary\nX PASSED\nY FAILED"
+                    }, {
+                        "type": "ColumnSet",
+                        "columns": [{
+                                "type": "Column",
+                                "width": "stretch",
+                                "items": [{
+                                        "type": "TextBlock",
+                                        "text": "Test Results"
+                                    }
+                                ]
+                            }, {
+                                "type": "Column",
+                                "width": "auto",
+                                "items": [{
+                                        "type": "Icon",
+                                        "name": "ChevronDown",
+                                        "size": "xSmall",
+                                        "selectAction": {
+                                            "type": "Action.ToggleVisibility",
+                                            "targetElements": ["e2e_details", "chevronUp", "chevronDown"]
+                                        },
+                                        "id": "chevronDown"
+                                    }, {
+                                        "type": "Icon",
+                                        "name": "ChevronUp",
+                                        "size": "xSmall",
+                                        "selectAction": {
+                                            "type": "Action.ToggleVisibility",
+                                            "targetElements": ["e2e_details", "chevronUp", "chevronDown"]
+                                        },
+                                        "id": "chevronUp",
+                                        "isVisible": false
+                                    }
+                                ],
+                                "spacing": "ExtraSmall",
+                                "verticalContentAlignment": "Top",
+                                "horizontalAlignment": "Right",
+                                "targetWidth": "AtLeast:Standard"
+                            },
+                        ],
+                        "spacing": "ExtraSmall"
+                    }, {
+                        "type": "Container",
+                        "id": "e2e_details",
+                        "isVisible": false,
+                        "roundedCorners": true,
+                        "showBorder": true,
+                        "style": "emphasis",
+                        "items": [{
+                                "type": "TextBlock",
+                                "text": "test1 failed\ntest2 failed\ntest3 failed",
+                                "size": "Small",
+                                "spacing": "None",
+                                "wrap": false,
+                                "color": "Attention"
+                            }
+                        ],
+                        "verticalContentAlignment": "Top",
+                        "targetWidth": "AtLeast:Standard",
+                        "spacing": "None"
+                    }
+                ],
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "version": "1.5"
+            }
+        }
+    ]
+}

@@ -32,7 +32,7 @@ echo "Running cx1e2e full suite (${RUN_LABEL:-manual}) against ${CANARY_CX1_URL}
     --tenant "${CANARY_TENANT}" \
     --client "${CANARY_CLIENT_ID}" \
     --secret "${CANARY_CLIENT_SECRET}" \
-    --config ./examples/flag/all.yaml \
+    --config ./examples/all.yaml \
     --threads 4 \
     --report-name "../results/${RUN_LABEL:-manual}-report" \
     --log trace \
@@ -56,20 +56,9 @@ echo "exit_code=$EXIT_CODE" >> "$GITHUB_OUTPUT"
 SUMMARY_LINES=""
 FAIL_LINES=""
 if [ -f "$LOGFILE" ]; then
-  echo "Log file $LOGFILE exists"
-  ls -al $LOGFILE
-  head $LOGFILE
-  tail $LOGFILE
-  echo GREPPING
-  grep -E "^(Ran|FAILED|SKIPPED|PASSED)" "$LOGFILE"
-  echo GREPPING2
-  grep "^FAIL x " "$LOGFILE" | sed -E 's/^FAIL x //' 
   SUMMARY_LINES=$(grep -E "^(Ran|FAILED|SKIPPED|PASSED)" "$LOGFILE" || true)
   FAIL_LINES=$(grep "^FAIL x " "$LOGFILE" | sed -E 's/^FAIL x //' || true)
 fi
-
-echo "Summary: $SUMMARY_LINES"
-echo "Fails: $FAIL_LINES"
 
 # ---- Job summary (readable markdown, always written) ----
 {

@@ -82,7 +82,7 @@ jobs:
           exit 1
 
       - name: Notify Microsoft Teams
-        if: always() && steps.run-suite.outputs.status != 'passed'
+        if: always()
         run: ./.github/scripts/notify-teams.sh
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}

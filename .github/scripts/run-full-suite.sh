@@ -36,7 +36,7 @@ echo "Running cx1e2e full suite (${RUN_LABEL:-manual}) against ${CANARY_CX1_URL}
     --threads 4 \
     --report-name "../results/${RUN_LABEL:-manual}-report" \
     --log trace \
-    --logfile "../${LOGFILE}"
+    | tee "../${LOGFILE}"
 )
 EXIT_CODE=$?
 

@@ -57,6 +57,13 @@ SUMMARY_LINES=""
 FAIL_LINES=""
 if [ -f "$LOGFILE" ]; then
   echo "Log file $LOGFILE exists"
+  ls -al $LOGFILE
+  head $LOGFILE
+  tail $LOGFILE
+  echo GREPPING
+  grep -E "^(Ran|FAILED|SKIPPED|PASSED)" "$LOGFILE"
+  echo GREPPING2
+  grep "^FAIL x " "$LOGFILE" | sed -E 's/^FAIL x //' 
   SUMMARY_LINES=$(grep -E "^(Ran|FAILED|SKIPPED|PASSED)" "$LOGFILE" || true)
   FAIL_LINES=$(grep "^FAIL x " "$LOGFILE" | sed -E 's/^FAIL x //' || true)
 fi

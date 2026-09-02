@@ -5,6 +5,10 @@ on:
     - cron: '0 0 * * *'   # midnight UTC
   workflow_dispatch: {}    # allow manual trigger for debugging
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   run-suite:
     runs-on: ubuntu-latest
@@ -48,9 +52,34 @@ jobs:
         run: ./.github/scripts/setup-workspace.sh cx1clientgo cx1e2e
 
       - name: Run full suite against Canary
+        id: run-suite
         run: ./.github/scripts/run-full-suite.sh
         env:
           RUN_LABEL: nightly-main
+
+      - name: Report unstable status
+        if: steps.run-suite.outputs.status == 'unstable'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'cx1e2e suite (nightly-main)',
+              head_sha: context.sha,
+              status: 'completed',
+              conclusion: 'neutral',
+              output: {
+                title: 'Some tests failed',
+                summary: 'The suite ran to completion but reported failing tests (exit code ${{ steps.run-suite.outputs.exit_code }}). See the job summary for the failing tests.'
+              }
+            });
+
+      - name: Fail job if suite did not run
+        if: steps.run-suite.outputs.status == 'failed'
+        run: |
+          echo "cx1e2e suite crashed / did not complete (exit code ${{ steps.run-suite.outputs.exit_code }})"
+          exit 1
 
       - name: Upload results
         if: always()

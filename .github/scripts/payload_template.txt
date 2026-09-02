@@ -61,9 +61,23 @@
                         "style": "emphasis",
                         "items": [{
                                 "type": "TextBlock",
-                                "text": "test1 failed\ntest2 failed\ntest3 failed",
+                                "text": "test1 failed",
                                 "size": "Small",
-                                "spacing": "None",
+                                "spacing": "Small",
+                                "wrap": true,
+                                "color": "Attention"
+                            }, {
+                                "type": "TextBlock",
+                                "text": "test2 failed",
+                                "size": "Small",
+                                "spacing": "Small",
+                                "wrap": true,
+                                "color": "Attention"
+                            }, {
+                                "type": "TextBlock",
+                                "text": "test3 failed",
+                                "size": "Small",
+                                "spacing": "Small",
                                 "wrap": true,
                                 "color": "Attention"
                             }

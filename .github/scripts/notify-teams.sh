@@ -94,16 +94,14 @@ if [ -n "$FAIL_TEXT" ]; then
       verticalContentAlignment: "Top",
       targetWidth: "AtLeast:Standard",
       spacing: "None",
-      items: [
-        {
-          type: "TextBlock",
-          text: $fails,
-          size: "Small",
-          spacing: "None",
-          wrap: true,
-          color: "Attention"
-        }
-      ]
+      items: ($fails | split("\n") | map(select(length > 0)) | map({
+        type: "TextBlock",
+        text: .,
+        size: "Small",
+        spacing: "Small",
+        wrap: true,
+        color: "Attention"
+      }))
     }
   ]')
 fi

@@ -56,9 +56,13 @@ echo "exit_code=$EXIT_CODE" >> "$GITHUB_OUTPUT"
 SUMMARY_LINES=""
 FAIL_LINES=""
 if [ -f "$LOGFILE" ]; then
+  echo "Log file $LOGFILE exists"
   SUMMARY_LINES=$(grep -E "^(Ran|FAILED|SKIPPED|PASSED)" "$LOGFILE" || true)
   FAIL_LINES=$(grep "^FAIL x " "$LOGFILE" | sed -E 's/^FAIL x //' || true)
 fi
+
+echo "Summary: $SUMMARY_LINES"
+echo "Fails: $FAIL_LINES"
 
 # ---- Job summary (readable markdown, always written) ----
 {

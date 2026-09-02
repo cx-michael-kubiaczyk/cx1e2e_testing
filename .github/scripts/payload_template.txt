@@ -64,7 +64,7 @@
                                 "text": "test1 failed\ntest2 failed\ntest3 failed",
                                 "size": "Small",
                                 "spacing": "None",
-                                "wrap": false,
+                                "wrap": true,
                                 "color": "Attention"
                             }
                         ],
@@ -74,7 +74,8 @@
                     }
                 ],
                 "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                "version": "1.5"
+                "version": "1.5",
+                "msteams": { "width": "full" }
             }
         }
     ]

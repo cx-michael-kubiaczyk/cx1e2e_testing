@@ -100,7 +100,7 @@ if [ -n "$FAIL_TEXT" ]; then
           text: $fails,
           size: "Small",
           spacing: "None",
-          wrap: false,
+          wrap: true,
           color: "Attention"
         }
       ]
@@ -120,6 +120,7 @@ PAYLOAD=$(jq -n \
         type: "AdaptiveCard",
         "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
         version: "1.5",
+        msteams: { width: "full" },
         body: ([
           { type: "TextBlock", text: $runTitle, weight: "Bolder" },
           { type: "TextBlock", text: $summary }

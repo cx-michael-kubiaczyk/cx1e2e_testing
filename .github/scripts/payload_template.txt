@@ -7,10 +7,28 @@
                 "body": [{
                         "type": "TextBlock",
                         "text": "Cx1e2e - Main",
-                        "weight": "Bolder"
+                        "weight": "Bolder",
+                        "spacing": "None"
                     }, {
                         "type": "TextBlock",
-                        "text": "This would be the summary\nX PASSED\nY FAILED"
+                        "text": "Ran 213 tests over 24m56.890607706s (4 threads)",
+                        "wrap": true,
+                        "spacing": "None"
+                    }, {
+                        "type": "TextBlock",
+                        "text": "FAILED 1 tests",
+                        "wrap": true,
+                        "spacing": "None"
+                    }, {
+                        "type": "TextBlock",
+                        "text": "SKIPPED 16 tests",
+                        "wrap": true,
+                        "spacing": "None"
+                    }, {
+                        "type": "TextBlock",
+                        "text": "PASSED 196 tests",
+                        "wrap": true,
+                        "spacing": "None"
                     }, {
                         "type": "ColumnSet",
                         "columns": [{

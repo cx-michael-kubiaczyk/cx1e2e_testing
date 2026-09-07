@@ -120,9 +120,13 @@ PAYLOAD=$(jq -n \
         version: "1.5",
         msteams: { width: "full" },
         body: ([
-          { type: "TextBlock", text: $runTitle, weight: "Bolder" },
-          { type: "TextBlock", text: $summary }
-        ] + $extra)
+          { type: "TextBlock", text: $runTitle, weight: "Bolder", spacing: "None" }
+        ] + ($summary | split("\n") | map(select(length > 0)) | map({
+          type: "TextBlock",
+          text: .,
+          wrap: true,
+          spacing: "None"
+        })) + $extra)
       }
     }]
   }')

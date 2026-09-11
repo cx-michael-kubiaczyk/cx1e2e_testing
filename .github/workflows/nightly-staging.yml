@@ -2,7 +2,7 @@ name: Nightly - staging branches
 
 on:
   schedule:
-    - cron: '0 2 * * *'   # 2am UTC - gives the midnight main run time to finish/settle
+    - cron: '0 23 * * *'   # 2am UTC - gives the midnight main run time to finish/settle
   workflow_dispatch: {}    # allow manual trigger for debugging
 
 permissions:

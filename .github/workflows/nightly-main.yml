@@ -2,7 +2,7 @@ name: Nightly - main branches
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # midnight UTC
+    - cron: '0 20 * * *'   # midnight UTC
   workflow_dispatch: {}    # allow manual trigger for debugging
 
 permissions:
